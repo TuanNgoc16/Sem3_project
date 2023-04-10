@@ -1,0 +1,122 @@
+﻿@model PaginatedList<ProjectSem3.Models.Job>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="page-heading about-heading header-text" style="background-image: url(assets/images/heading-6-1920x500.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-content ">
+                    <h4>Refer to the jobs below</h4>
+                    <h2>Jobs</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="products">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="contact-form">
+
+                    <div class="form-group">
+                        <h5>Jobs Search</h5>
+                    </div>
+                     <div class="row">
+                      <form asp-action="Index" method="get">
+                            <div class="form-actions no-color">
+                                <p>
+                                    <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" style="height: 36px;border-radius: 4px;" />
+                                    <input type="submit" value="Search" class="btn btn-default" style="background-color: #f33f3f" />
+
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                    <form action="#">
+                        <h5 style="margin-bottom: 15px">Type</h5>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Contract (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Full time (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Internship (5)</small>
+                            </label>
+                        </div>
+
+                        <br>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-6">
+                            <div class="product-item">
+                                <a asp-controller="Jobs" asp-action="JobDetails" asp-route-id="@item.Id"><img src="~/assets/images/@Html.DisplayFor(modelItem => item.Image)" alt=""></a>
+                                <div class="down-content">
+                                    <a asp-controller="Jobs" asp-action="JobDetails" asp-route-id="@item.Id"><h4 style="color: red">  @Html.DisplayFor(modelItem => item.Title)</h4></a>
+
+                                    <h6>@Html.DisplayFor(modelItem => item.Wage)</h6>
+
+                                    <h4><small>
+                                        <i class="fa fa-briefcase"></i>Vị trí: @Html.DisplayFor(modelItem => item.Vacancy) 
+                                        
+                                    </small>
+                                        
+                                   </h4>
+
+                                    <small>
+                                        <strong title="Posted on"><i class="fa fa-calendar"></i> @Html.DisplayFor(modelItem => item.DateCreate)</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <strong title="Location"><i class="fa fa-map-marker"></i> @Html.DisplayFor(modelItem => item.Address)</strong>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="col-md-12">
+                        <ul class="pages">
+                          
+                                  @{
+                                  var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                                  var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                                  }
+
+                            <a asp-action="Index"
+                                    asp-route-pageNumber="@(Model.PageIndex - 1)"
+                                    asp-route-currentFilter="@ViewData["CurrentFilter"]"class="btn btn-default @prevDisabled">Previous
+                            </a>
+                            <a asp-action="Index"
+                                    asp-route-pageNumber="@(Model.PageIndex + 1)"
+                                    asp-route-currentFilter="@ViewData["CurrentFilter"]"class="btn btn-default @nextDisabled">Next
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="~/assets/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="~/assets/css/owl.css">
+
+    <link rel="stylesheet" href="~/assets/css/StyleSheet.css"/>
+
+    <link rel="stylesheet" href="~/assets/css/signin.css" />
+
+
+
+</head>
+
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <!-- Header -->
+    <header class="">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Homes" asp-action="Index"><h2>Job <em>Banana</em></h2></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" asp-controller="Homes" asp-action="Index">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item"><a class="nav-link" asp-controller="Jobs" asp-action="Index">Jobs</a></li>
+
+                        <li class="nav-item"><a class="nav-link" asp-controller="About" asp-action="Index">About</a></li>
+
+                        <li class="nav-item"><a class="nav-link" asp-controller="Blog" asp-action="Index">Blog</a></li>
+
+                        <li class="nav-item"><a class="nav-link" asp-controller="Contact" asp-action="Index">Contact</a></li>
+
+                        <li class="nav-item" style="position: relative">
+                            <a class="nav-link" style="position: absolute; top: -3px"><partial name="_LoginPartial.cshtml"/></a>
+                        </li>
+
+     
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+ 
+
+      <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inner-content">
+                        <p>Copyright © 2023 Company Name - Template by: <a href="https://www.banana.com/">Banana group</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="top-up">
+            <i class="fas fa-arrow-circle-up"></i>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="~/assets/js/custom.js"></script>
+    <script src="~/assets/js/owl.js"></script>
+    @await RenderSectionAsync("Scripts", required:false)
+    @await Component.InvokeAsync("Notyf")
+
+</body>
+</html>
+<!-- import icon font awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+<!-- Import thư viện JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+   var offset = 500;
+   var duration = 750;
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > offset)
+                $('#top-up').fadeIn(duration); else
+                $('#top-up').fadeOut(duration);
+        });
+        $('#top-up').click(function () {
+            $('body,html').animate({ scrollTop: 0 }, duration);
+        });
+    });
+</script>
+
+<style>
+    #top-up {
+font-size: 3rem;
+cursor: pointer;
+position: fixed;
+z-index: 9999;
+color: #f33f3f;
+bottom: 20px;
+right: 15px;
+display: none;
+}
+#top-up:hover {
+color: #333
+}
+</style>
